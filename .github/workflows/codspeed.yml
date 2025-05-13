@@ -28,6 +28,9 @@ jobs:
           token: ${{ secrets.PAT }}
       - run: git config --global url."https://not-matthias:${{ secrets.PAT }}@github.com".insteadOf "https://github.com"
 
+      - name: "Install custom runner"
+        run: cargo install --git https://github.com/codspeedhq/runner --branch cod-674-collect-profiles-while-benchmarks-are-running
+
       - uses: actions/setup-python@v2
         with:
           python-version: ${{ env.PYTHON_VERSION }}
