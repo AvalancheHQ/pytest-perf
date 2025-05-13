@@ -45,11 +45,11 @@ jobs:
           - ">=8.1.1"
 
     steps:
+      - run: git config --global url."https://not-matthias:${{ secrets.PAT }}@github.com".insteadOf "https://github.com"
       - uses: actions/checkout@v4
         with:
           submodules: true
           token: ${{ secrets.PAT }}
-      - run: git config --global url."https://not-matthias:${{ secrets.PAT }}@github.com".insteadOf "https://github.com"
 
       - uses: astral-sh/setup-uv@v4
         with:

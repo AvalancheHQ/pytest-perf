@@ -22,14 +22,14 @@ jobs:
     name: Run ${{ matrix.mode }} benchmarks
     runs-on: ${{ matrix.runs-on }}
     steps:
+      - run: git config --global url."https://not-matthias:${{ secrets.PAT }}@github.com".insteadOf "https://github.com"
       - uses: actions/checkout@v4
         with:
           submodules: "recursive"
           token: ${{ secrets.PAT }}
-      - run: git config --global url."https://not-matthias:${{ secrets.PAT }}@github.com".insteadOf "https://github.com"
 
       - name: "Install custom runner"
-        run: cargo install --git https://github.com/codspeedhq/runner --branch cod-674-collect-profiles-while-benchmarks-are-running
+        run: cargo install --git https://github.com/codspeedhq/runner
 
       - uses: actions/setup-python@v2
         with:
